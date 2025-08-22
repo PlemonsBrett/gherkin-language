@@ -1,0 +1,70 @@
+'.source.gherkin':
+    'Feature':
+        'prefix': 'feature'
+        'body': '''
+            Feature: ${1:Feature Name}
+                In order to ${2:achieve some goal}
+                As a ${3:user type}
+                I want to ${4:do something}
+
+                ${5}
+        '''
+
+    'Scenario':
+        'prefix': 'scenario'
+        'body': '''
+            Scenario: ${1:Scenario Name}
+                Given ${2:some context}
+                When ${3:some action is performed}
+                Then ${4:some outcome is achieved}
+        '''
+
+    'Scenario Outline':
+        'prefix': 'outline'
+        'body': '''
+            Scenario Outline: ${1:Scenario Outline Name}
+                Given ${2:some context with <parameter>}
+                When ${3:some action is performed}
+                Then ${4:some outcome is achieved}
+
+            Examples:
+                | ${5:parameter} |
+                | ${6:value1}    |
+                | ${7:value2}    |
+        '''
+
+    'Background':
+        'prefix': 'background'
+        'body': '''
+            Background:
+                Given: ${1:Some common context}
+        '''
+
+    'Given Step':
+        'prefix': 'given'
+        'body': 'Given ${1:some context}'
+
+    'When Step':
+        'prefix': 'when'
+        'body': 'When ${1:some action is performed}'
+
+    'Then Step':
+        'prefix': 'then'
+        'body': 'Then ${1:some outcome is achieved}'
+
+    'And Step':
+        'prefix': 'and'
+        'body': 'And ${1:some additional context}'
+
+    'But Step':
+        'prefix': 'but'
+        'body': 'But ${1:some exception}'
+
+    'Examples Table':
+        'prefix': 'examples'
+        'body': '''
+            Examples:
+                | ${1:parameter1} | ${2:parameter2} |
+                | ${3:value1}     | ${4:value2}     |
+                | ${5:value3}     | ${6:value4}     |
+        '''

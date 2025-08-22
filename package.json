@@ -1,0 +1,21 @@
+{
+  "name": "gherkin-language",
+  "main": "./lib/gherkin-language",
+  "version": "1.0.0",
+  "description": "Gherkin (Cucumber/Behave) language support for Pulsar",
+  "keywords": [
+      "language",
+      "grammar",
+      "gherkin",
+      "cucumber",
+      "behave",
+      "bdd"
+  ],
+  "repository": "https://github.com/plemonsBrett/gherkin-language",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+  }
+}
