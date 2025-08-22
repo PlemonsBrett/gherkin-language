@@ -1,7 +1,7 @@
 {
   "name": "gherkin-language",
   "main": "./lib/gherkin-language",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Gherkin (Cucumber/Behave) language support for Pulsar",
   "author": "Brett Plemons <brett@plemons.dev>",
   "keywords": [
