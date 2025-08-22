@@ -1,37 +1,47 @@
-# Gherkin Language
+# Language Gherkin
 
 Gherkin language support for Pulsar editor.
 
+![Gherkin Syntax Highlighting](screenshot.png)
+
 ## Features
 
-- Syntax highlighting for .feature files
-- Support for multiple languages (English, Spanish, French, German, etc.)
-- Code snippets for common Gherkin constructs
-- Support for tables, doc strings, and parameters
-- Tag highlighting
+- 🎨 Syntax highlighting for `.feature` files
+- 🌍 Support for multiple languages (English, Spanish, French, German, etc.)
+- ⚡ Code snippets for common Gherkin constructs
+- 📊 Support for tables, doc strings, and parameters
+- 🏷️ Tag highlighting (@tags)
 
 ## Installation
 
+### From Pulsar Package Manager
+```bash
+ppm install gherkin-language
+```
+
+### Manual Installation
+
 1. Download this package
-2. Copy to your Pulsar packages directory
+2. Copy to `~/.pulsar/packages/gherkin-language`
 3. Restart Pulsar
 
 ## Usage
 
 Create or open any `.feature` file and start writing Gherkin scenarios!
 
-## Keywords Supported
+### snippets
 
-- Feature, Scenario, Scenario Outline, Background, Examples
-- Given, When, Then, And, But
-- Multiple language variants
-- Tags (@tag)
-- Comments (#)
+Type these and press Tab:
 
-## Snippets
+- `feature` - Feature template
+- `scenario` - Scenario template
+- `outline` - Scenario outline template
+- `given`, `when`, `then` - Step keywords
 
-- `feature` - Creates a feature template
-- `scenario` - Creates a scenario template  
-- `outline` - Creates a scenario outline template
-- `given`, `when`, `then`, `and`, `but` - Step keywords
-- `examples` - Examples table template
+## Contributing
+
+Pull requests welcome! Please read the contributing guidelines.
+
+## License
+
+[MIT License](LICENSE.md)
