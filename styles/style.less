@@ -1,0 +1,149 @@
+/* Custom Gherkin Syntax Highlighting for Pulsar
+   Add this to your stylesheet: Edit → Stylesheet */
+
+/* PRIMARY KEYWORDS - Hierarchical Colors */
+
+/* Feature - Orange (Top level) */
+.syntax--source.syntax--gherkin .syntax--keyword.syntax--control.syntax--feature {
+  color: #ff8c00 !important;
+  font-weight: bold;
+}
+
+/* Rule & Background - Purple (Second level) */
+.syntax--source.syntax--gherkin .syntax--keyword.syntax--control.syntax--background {
+  color: #9966cc !important;
+  font-weight: bold;
+}
+
+/* Scenario - Green (Third level) */
+.syntax--source.syntax--gherkin .syntax--keyword.syntax--control.syntax--scenario {
+  color: #00a651 !important;
+  font-weight: bold;
+}
+
+/* Steps (Given, When, Then, And, But, *) - Red (Fourth level) */
+.syntax--source.syntax--gherkin .syntax--keyword.syntax--control.syntax--step {
+  color: #e74c3c !important;
+  font-weight: bold;
+}
+
+/* Scenario Outline/Template - Gray (Special case) */
+.syntax--source.syntax--gherkin .syntax--keyword.syntax--control.syntax--scenario.syntax--outline {
+  color: #7f8c8d !important;
+  font-weight: bold;
+}
+
+/* Examples/Scenarios - Blue (Data definition) */
+.syntax--source.syntax--gherkin .syntax--keyword.syntax--control.syntax--examples {
+  color: #3498db !important;
+  font-weight: bold;
+}
+
+/* SECONDARY KEYWORDS */
+
+/* Tags (@smoke, @critical) - Tag Color (Purple/Magenta) */
+.syntax--source.syntax--gherkin .syntax--storage.syntax--type.syntax--tag {
+  color: #e91e63 !important;
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* Data Table Borders (|) - Same as Tags */
+.syntax--source.syntax--gherkin .syntax--punctuation.syntax--definition.syntax--table,
+.syntax--source.syntax--gherkin .syntax--punctuation.syntax--separator.syntax--table {
+  color: #e91e63 !important;
+  font-weight: bold;
+}
+
+/* Doc String Delimiters (""") - Multi-line Comment Color */
+.syntax--source.syntax--gherkin .syntax--punctuation.syntax--definition.syntax--string.syntax--begin,
+.syntax--source.syntax--gherkin .syntax--punctuation.syntax--definition.syntax--string.syntax--end {
+  color: #6a9955 !important;
+  font-style: italic;
+}
+
+/* Doc String Content - Multi-line Comment Color */
+.syntax--source.syntax--gherkin .syntax--string.syntax--quoted.syntax--triple {
+  color: #6a9955 !important;
+  font-style: italic;
+}
+
+/* Comments (#) - Standard Comment Color */
+.syntax--source.syntax--gherkin .syntax--comment.syntax--line {
+  color: #6a9955 !important;
+  font-style: italic;
+}
+
+/* DESCRIPTORS AND CONTENT */
+
+/* Scenario/Feature Titles - Muted/Comment Color */
+.syntax--source.syntax--gherkin .syntax--entity.syntax--name.syntax--feature,
+.syntax--source.syntax--gherkin .syntax--entity.syntax--name.syntax--scenario,
+.syntax--source.syntax--gherkin .syntax--entity.syntax--name.syntax--background,
+.syntax--source.syntax--gherkin .syntax--entity.syntax--name.syntax--examples {
+  color: #8e8e93 !important;
+  font-style: italic;
+}
+
+/* Feature/Background Descriptions - Multi-line Comment Color */
+.syntax--source.syntax--gherkin .syntax--string.syntax--unquoted.syntax--feature.syntax--description,
+.syntax--source.syntax--gherkin .syntax--string.syntax--unquoted.syntax--scenario.syntax--description {
+  color: #6a9955 !important;
+  font-style: italic;
+}
+
+/* Step Text - Normal String Color */
+.syntax--source.syntax--gherkin .syntax--string.syntax--unquoted.syntax--step {
+  color: #d69e2e !important;
+}
+
+/* Step Parameters - Highlighted String Color */
+.syntax--source.syntax--gherkin .syntax--string.syntax--quoted.syntax--double.syntax--parameter {
+  color: #38a169 !important;
+  font-weight: bold;
+}
+
+/* Placeholder Parameters (<param>) - Variable Color */
+.syntax--source.syntax--gherkin .syntax--variable.syntax--parameter.syntax--placeholder {
+  color: #805ad5 !important;
+  font-weight: bold;
+}
+
+/* Numeric Parameters - Number Color */
+.syntax--source.syntax--gherkin .syntax--constant.syntax--numeric.syntax--parameter {
+  color: #dd6b20 !important;
+  font-weight: bold;
+}
+
+/* Table Cell Content - Subtle String Color */
+.syntax--source.syntax--gherkin .syntax--string.syntax--unquoted.syntax--table.syntax--cell {
+  color: #4299e1 !important;
+}
+
+/* ADDITIONAL STYLING */
+
+/* Make meta containers inherit colors properly */
+.syntax--source.syntax--gherkin .syntax--meta.syntax--feature,
+.syntax--source.syntax--gherkin .syntax--meta.syntax--scenario,
+.syntax--source.syntax--gherkin .syntax--meta.syntax--background,
+.syntax--source.syntax--gherkin .syntax--meta.syntax--examples,
+.syntax--source.syntax--gherkin .syntax--meta.syntax--step,
+.syntax--source.syntax--gherkin .syntax--meta.syntax--table {
+  /* Inherit colors from children */
+}
+
+/* Ensure proper contrast for readability */
+.syntax--source.syntax--gherkin {
+  line-height: 1.4;
+}
+
+/* Optional: Add subtle background for tables */
+.syntax--source.syntax--gherkin .syntax--meta.syntax--table {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+}
+
+/* Optional: Highlight current step/scenario more prominently */
+.syntax--source.syntax--gherkin .syntax--meta.syntax--step:hover {
+  background-color: rgba(255, 255, 0, 0.1);
+}

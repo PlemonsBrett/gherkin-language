@@ -1,241 +1,275 @@
-'scopeName': 'source.gherkin'
-'name': 'Gherkin'
-'fileTypes': ['feature']
-'patterns': [
-    {
-        'include': '#comments'
-    }
-    {
-        'include': '#tags'
-    }
-    {
-        'include': '#feature'
-    }
-    {
-        'include': '#background'
-    }
-    {
-        'include': '#scenario'
-    }
-    {
-        'include': '#scenario_outline'
-    }
-    {
-        'include': '#examples'
-    }
-    {
-        'include': '#steps'
-    }
-    {
-        'include': '#table'
-    }
-    {
-        'include': '#doc_string'
-    }
+scopeName: 'source.gherkin'
+name: 'Gherkin'
+fileTypes: ['feature']
+patterns: [
+  {
+    include: '#comments'
+  }
+  {
+    include: '#tags'
+  }
+  {
+    include: '#feature'
+  }
+  {
+    include: '#background'
+  }
+  {
+    include: '#scenario_outline'
+  }
+  {
+    include: '#scenario'
+  }
+  {
+    include: '#examples'
+  }
+  {
+    include: '#steps'
+  }
+  {
+    include: '#table'
+  }
+  {
+    include: '#doc_string'
+  }
 ]
 
-'repository':
-    'comments':
-        'patterns': [
-            {
-                'match': '\\s*#.*$'
-                'name': 'comment.line.number-sign.gherkin'
-            }
-        ]
+repository:
+  comments:
+    patterns: [
+      {
+        match: '\\s*#.*$'
+        name: 'comment.line.number-sign.gherkin'
+      }
+    ]
 
-    'tags':
-        'patterns': [
-            {
-                'match': '\\s*(@\\w+)'
-                'name': 'storage.type.tag.gherkin'
-            }
-        ]
+  tags:
+    patterns: [
+      {
+        match: '@[^\\s]+'
+        name: 'storage.type.tag.gherkin'
+      }
+    ]
 
-    'feature':
-        'patterns': [
-            {
-                'begin': '^\\s*(Feature|Funktionalität|Fonctionnalité|Funcionalidad|Caratteristica|機能|기능|Особина|Функция):'
-                'beginCaptures':
-                    '1':
-                        'name': 'keyword.control.feature.gherkin'
-                'end': '^(?=\\s*@|\\s*(Background|Scenario|Scenario Outline|Scenarios|Esquema de escenario|Esquema do Cenário|Contesto|Bakgrunn|Tình huống|Kịch bản|Алтернатива|Сценарий|Структура сценария))'
-                'name': 'meta.feature.gherkin'
-                'patterns': [
-                    {
-                        'include': '#comments'
-                    }
-                    {
-                        'match': '.*'
-                        'name': 'string.unquoted.feature.description.gherkin'
-                    }
-                ]
-            }
+  feature:
+    patterns: [
+      {
+        begin: '^\\s*(Feature):\\s*(.*)$'
+        beginCaptures:
+          '1':
+            name: 'keyword.control.feature.gherkin'
+          '2':
+            name: 'entity.name.feature.gherkin'
+        end: '^(?=\\s*@|\\s*(Background|Scenario Outline|Scenario|Examples|Rule))'
+        name: 'meta.feature.gherkin'
+        patterns: [
+          {
+            include: '#comments'
+          }
+          {
+            match: '^\\s*(.*)$'
+            captures:
+              '1':
+                name: 'string.unquoted.feature.description.gherkin'
+          }
         ]
+      }
+    ]
 
-    'background':
-        'patterns': [
-            {
-                'begin': '^\\s*(Background|Contexte|Antecedentes|Contesto|Bakgrunn|Bối cảnh|Предистория|Основа):'
-                'beginCaptures':
-                    '1':
-                        'name': 'keyword.control.background.gherkin'
-                'end': '^(?=\\s*@|\\s*(Scenario|Scenario Outline|Scenarios|Esquema de escenario|Esquema do Cenário|Contesto|Bakgrunn|Tình huống|Kịch bản|Алтернатива|Сценарий|Структура сценария))'
-                'name': 'meta.background.gherkin'
-                'patterns': [
-                    {
-                      'include': '#steps'
-                    }
-                    {
-                      'include': '#comments'
-                    }
-                ]
-            }
+  background:
+    patterns: [
+      {
+        begin: '^\\s*(Background|Rule):\\s*(.*)$'
+        beginCaptures:
+          '1':
+            name: 'keyword.control.background.gherkin'
+          '2':
+            name: 'entity.name.background.gherkin'
+        end: '^(?=\\s*@|\\s*(Scenario Outline|Scenario|Examples|Feature|Rule|Background))'
+        name: 'meta.background.gherkin'
+        patterns: [
+          {
+            include: '#steps'
+          }
+          {
+            include: '#comments'
+          }
+          {
+            include: '#table'
+          }
+          {
+            include: '#doc_string'
+          }
         ]
+      }
+    ]
 
-    'scenario':
-        'patterns': [
-            {
-                'begin': '^\\s*(Scenario|Scénario|Escenario|Cenário|Scenario|Tình huống|Kịch bản|Сценарий|Сценарий):'
-                'beginCaptures':
-                    '1':
-                        'name': 'keyword.control.scenario.gherkin'
-                'end': '^(?=\\s*@|\\s*(Scenario|Scenario Outline|Scenarios|Background|Esquema de escenario|Esquema do Cenário|Contesto|Bakgrunn|Tình huống|Kịch bản|Алтернатива|Сценарий|Структура сценария))'
-                'name': 'meta.scenario.gherkin'
-                'patterns': [
-                    {
-                        'include': '#steps'
-                    }
-                    {
-                        'include': '#comments'
-                    }
-                ]
-            }
+  scenario_outline:
+    patterns: [
+      {
+        begin: '^\\s*(Scenario Outline|Scenario Template):\\s*(.*)$'
+        beginCaptures:
+          '1':
+            name: 'keyword.control.scenario.outline.gherkin'
+          '2':
+            name: 'entity.name.scenario.gherkin'
+        end: '^(?=\\s*@|\\s*(Scenario Outline|Scenario|Background|Feature|Examples|Rule))'
+        name: 'meta.scenario.outline.gherkin'
+        patterns: [
+          {
+            include: '#steps'
+          }
+          {
+            include: '#comments'
+          }
+          {
+            include: '#table'
+          }
+          {
+            include: '#doc_string'
+          }
         ]
+      }
+    ]
 
-    'scenario_outline':
-        'patterns': [
-            {
-                'begin': '^\\s*(Scenario Outline|Scenario Template|Esquema de escenario|Esquema do Cenário|Структура сценария|Шаблон сценария):'
-                'beginCaptures':
-                    '1':
-                        'name': 'keyword.control.scenario.outline.gherkin'
-                'end': '^(?=\\s*@|\\s*(Scenario|Scenario Outline|Scenarios|Background|Examples|Esempi|Ejemplos|Exemples|Примери|Примеры))'
-                'name': 'meta.scenario.outline.gherkin'
-                'patterns': [
-                    {
-                        'include': '#steps'
-                    }
-                    {
-                        'include': '#comments'
-                    }
-                ]
-            }
+  scenario:
+    patterns: [
+      {
+        begin: '^\\s*(Scenario|Example):\\s*(.*)$'
+        beginCaptures:
+          '1':
+            name: 'keyword.control.scenario.gherkin'
+          '2':
+            name: 'entity.name.scenario.gherkin'
+        end: '^(?=\\s*@|\\s*(Scenario Outline|Scenario|Background|Feature|Examples|Rule|Example))'
+        name: 'meta.scenario.gherkin'
+        patterns: [
+          {
+            include: '#steps'
+          }
+          {
+            include: '#comments'
+          }
+          {
+            include: '#table'
+          }
+          {
+            include: '#doc_string'
+          }
         ]
+      }
+    ]
 
-    'examples':
-        'patterns': [
-            {
-                'begin': '^\\s*(Examples|Ejemplos|Exemples|Esempi|Примери|Примеры):'
-                'beginCaptures':
-                    '1':
-                        'name': 'keyword.control.examples.gherkin'
-                'end': '^(?=\\s*@|\\s*(Scenario|Scenario Outline|Background))'
-                'name': 'meta.examples.gherkin'
-                'patterns': [
-                    {
-                        'include': '#table'
-                    }
-                    {
-                        'include': '#comments'
-                    }
-                ]
-            }
+  examples:
+    patterns: [
+      {
+        begin: '^\\s*(Examples|Scenarios):\\s*(.*)$'
+        beginCaptures:
+          '1':
+            name: 'keyword.control.examples.gherkin'
+          '2':
+            name: 'entity.name.examples.gherkin'
+        end: '^(?=\\s*@|\\s*(Scenario Outline|Scenario|Background|Feature|Rule|Example))'
+        name: 'meta.examples.gherkin'
+        patterns: [
+          {
+            include: '#table'
+          }
+          {
+            include: '#comments'
+          }
         ]
+      }
+    ]
 
-    'steps':
-        'patterns': [
-            {
-                'begin': '^\\s*(Given|When|Then|And|But|\\*|Dado|Quando|Então|E|Mas|Soit|Quand|Alors|Et|Mais|Dada|Cuando|Entonces|Y|Pero|Dato|Quando|Allora|Ed|Ma|Gitt|Når|Så|Og|Men|Givet|Så|Och|Men|Дано|Если|То|И|Но|Допустим|Пусть|К тому же)\\s'
-                'beginCaptures':
-                    '1':
-                        'name': 'keyword.control.step.gherkin'
-                'end': '$'
-                'name': 'meta.step.gherkin'
-                'patterns': [
-                    {
-                        'include': '#step_parameters'
-                    }
-                    {
-                        'match': '.*'
-                        'name': 'string.unquoted.step.gherkin'
-                    }
-                ]
-            }
+  steps:
+    patterns: [
+      {
+        begin: '^\\s*(Given|When|Then|And|But|\\*)\\s+'
+        beginCaptures:
+          '1':
+            name: 'keyword.control.step.gherkin'
+        end: '$'
+        name: 'meta.step.gherkin'
+        patterns: [
+          {
+            include: '#step_parameters'
+          }
+          {
+            match: '.*'
+            name: 'string.unquoted.step.gherkin'
+          }
         ]
+      }
+    ]
 
-    'step_parameters':
-        'patterns': [
-            {
-                'match': '"([^"]*)"'
-                'name': 'string.quoted.double.gherkin'
-                'captures':
-                    '1':
-                        'name': 'variable.parameter.gherkin'
-            }
-            {
-                'match': '<([^>]*)>'
-                'name': 'variable.parameter.placeholder.gherkin'
-                'captures':
-                    '1':
-                        'name': 'variable.parameter.gherkin'
-            }
-            {
-                'match': '(\\d+)'
-                'name': 'constant.numeric.gherkin'
-            }
-        ]
+  step_parameters:
+    patterns: [
+      {
+        match: '"[^"]*"'
+        name: 'string.quoted.double.parameter.gherkin'
+      }
+      {
+        match: '<[^>]*>'
+        name: 'variable.parameter.placeholder.gherkin'
+      }
+      {
+        match: '\\b\\d+\\b'
+        name: 'constant.numeric.parameter.gherkin'
+      }
+    ]
 
-    'table':
-        'patterns': [
-            {
-                'begin': '^\\s*\\|'
-                'end': '$'
-                'name': 'meta.table.gherkin'
-                'patterns': [
-                    {
-                        'match': '\\|'
-                        'name': 'punctuation.definition.table.gherkin'
-                    }
-                    {
-                        'match': '[^|\\n\\r]+'
-                        'name': 'string.unquoted.table.cell.gherkin'
-                    }
-                ]
-            }
+  table:
+    patterns: [
+      {
+        begin: '^(\\s*)(\\|)'
+        beginCaptures:
+          '2':
+            name: 'punctuation.definition.table.begin.gherkin'
+        end: '(\\|)(\\s*)$'
+        endCaptures:
+          '1':
+            name: 'punctuation.definition.table.end.gherkin'
+        name: 'meta.table.gherkin'
+        patterns: [
+          {
+            match: '\\|'
+            name: 'punctuation.separator.table.gherkin'
+          }
+          {
+            match: '[^|\\s][^|]*[^|\\s]|[^|\\s]'
+            name: 'string.unquoted.table.cell.gherkin'
+          }
+          {
+            match: '\\s+'
+            name: 'meta.whitespace.table.gherkin'
+          }
         ]
+      }
+    ]
 
-    'doc_string':
-        'patterns': [
-            {
-                'begin': '^\\s*"""'
-                'end': '^\\s*"""'
-                'name': 'string.quoted.triple.gherkin'
-                'patterns': [
-                    {
-                        'match': '.*'
-                        'name': 'string.quoted.triple.content.gherkin'
-                    }
-                ]
-            }
-            {
-                'begin': '^\\s*```'
-                'end': '^\\s*```'
-                'name': 'string.quoted.triple.gherkin'
-                'patterns': [
-                    {
-                        'match': '.*'
-                        'name': 'string.quoted.triple.content.gherkin'
-                    }
-                ]
-            }
-        ]
+  doc_string:
+    patterns: [
+      {
+        begin: '^\\s*(""")\\s*$'
+        beginCaptures:
+          '1':
+            name: 'punctuation.definition.string.begin.gherkin'
+        end: '^\\s*(""")\\s*$'
+        endCaptures:
+          '1':
+            name: 'punctuation.definition.string.end.gherkin'
+        name: 'string.quoted.triple.gherkin'
+      }
+      {
+        begin: '^\\s*(```)\\s*$'
+        beginCaptures:
+          '1':
+            name: 'punctuation.definition.string.begin.gherkin'
+        end: '^\\s*(```)\\s*$'
+        endCaptures:
+          '1':
+            name: 'punctuation.definition.string.end.gherkin'
+        name: 'string.quoted.triple.gherkin'
+      }
+    ]
